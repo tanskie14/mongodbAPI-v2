@@ -1,11 +1,13 @@
-const errorHandler = ( err, req ,res , next) => {   
+const errorMiddlewareHandler = ( err, req ,res , next) => {   
     console.log(`here is an error handler`);
     const statusCode = res.statusCode ? res.statusCode : 500;
-    res.statusCode( statusCode );
+    res.status( statusCode );
     res.json({ 
         message: err.message , 
         stack: process.env.NODE_ENV == 'development' ? err.stack : null
     })
 }
 
-module.exports = errorHandler
+module.exports = {
+    errorMiddlewareHandler
+}
